@@ -108,3 +108,4 @@ app.put("/products/:id", (req, res) => {
     .then((updatedProduct) => res.json(updatedProduct))
     .catch((error) => res.status(400).json("Error: " + error));
 });
+
