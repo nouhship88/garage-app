@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json()); // To parse JSON data
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect("mongodb://mongo:27017/garage", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
