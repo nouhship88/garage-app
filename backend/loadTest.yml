@@ -1,0 +1,36 @@
+config:
+  target: "http://localhost:5000"
+  phases:
+    - duration: 5  # Run test for 30 seconds
+      arrivalRate: 5  # Start with 10 requests per second
+      rampTo: 10  # Gradually increase to 50 requests per second
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "Test Users API"
+    flow:
+      - get:
+          url: "/users"
+      - post:
+          url: "/users"
+          json:
+            name: "Test User"
+            email: "testuser@example.com"
+      - delete:
+          url: "/users/{{ userId }}"  # Will replace with actual ID in real test
+
+  - name: "Test Products API"
+    flow:
+      - get:
+          url: "/products"
+      - post:
+          url: "/products"
+          json:
+            name: "Test Product"
+            price: 100
+            description: "Test description"
+            userId: "67e7494f477f6016713fe8bd"  # Replace with an existing user ID
+      - delete:
+          url: "/products/{{ productId }}"
